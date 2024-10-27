@@ -1,6 +1,5 @@
 package org.example.domain;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.example.domain.pieces.ChessPiece;
 import org.example.domain.pieces.King;
 import org.example.domain.pieces.Rook;
@@ -8,9 +7,6 @@ import org.example.domain.pieces.Rook;
 public class ChessBoard {
     public ChessPiece[][] board = new ChessPiece[8][8]; // creating a field for game
     Colour nowPlayer;
-    // to detect Kings' positions for checks
-    public Pair<Integer, Integer> whiteKingPosition = Pair.of(0, 4);
-    public Pair<Integer, Integer> blackKingPosition = Pair.of(7, 4);
 
     public ChessBoard(Colour nowPlayer) {
         this.nowPlayer = nowPlayer;
@@ -29,13 +25,6 @@ public class ChessBoard {
                 board[startLine][startColumn].checkFirstMove = false;
                 board[startLine][startColumn] = null; // set null to previous cell
                 this.nowPlayer = this.nowPlayerColour().equals(Colour.WHITE) ? Colour.BLACK : Colour.WHITE;
-
-                if (board[startLine][startColumn] instanceof King) {
-                    switch (this.nowPlayerColour()) {
-                        case WHITE -> whiteKingPosition = Pair.of(endLine, endColumn);
-                        case BLACK -> blackKingPosition = Pair.of(endLine, endColumn);
-                    }
-                }
 
                 return true;
             } else return false;

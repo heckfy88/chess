@@ -28,11 +28,6 @@ public class King extends ChessPiece {
                         && board.board[i][j].canMove(board, i, j, line, column)
                         && !board.board[i][j].hasFigureInAWay(board, i, j, line, column)
                 ) {
-                    System.out.printf(
-                            "Шах - %s %s - [%d][%d]%n",
-                            Piece.fromSymbol(board.board[i][j].getSymbol()),
-                            board.board[i][j].colour, i, j
-                    );
                     return true;
                 }
             }
